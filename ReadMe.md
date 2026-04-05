@@ -7,3 +7,5 @@ git remote add origin https://github.com/pavelfire/weather-service.git
 3. Подключить PostgreSQL и сохранять в него данные о погоде полученные cron -ом
 4. Подключить Redis и реализовать кэширование данных о погоде
 5. Вывести все параметры в конфиг
+
+go run ./cmd/server/main.go
