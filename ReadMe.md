@@ -9,3 +9,7 @@ git remote add origin https://github.com/pavelfire/weather-service.git
 5. Вывести все параметры в конфиг
 
 go run ./cmd/server/main.go
+go get -u github.com/go-chi/chi/v5
+localhost:3000
+
+
