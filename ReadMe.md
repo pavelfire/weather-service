@@ -12,4 +12,4 @@ go run ./cmd/server/main.go
 go get -u github.com/go-chi/chi/v5
 localhost:3000
 
-
+go get github.com/go-co-op/gocron/v2
