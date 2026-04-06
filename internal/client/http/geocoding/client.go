@@ -6,7 +6,7 @@ import (
 	"net/http"
 )
 
-type GeocodingResponse []struct {
+type GeocodingResponse struct {
 	Name      string  `json:"name"`
 	Country   string  `json:"country"`
 	Latitude  float64 `json:"latitude"`
@@ -14,10 +14,10 @@ type GeocodingResponse []struct {
 }
 
 type client struct {
-	httpClient http.Client
+	httpClient *http.Client
 }
 
-func NewClient(httpClient http.Client) *client {
+func NewClient(httpClient *http.Client) *client {
 	return &client{
 		httpClient: httpClient,
 	}
@@ -36,7 +36,7 @@ func (c *client) GetCoordinates(city string) (res GeocodingResponse, err error) 
 	}
 
 	var geoResp struct {
-		Results GeocodingResponse `json:"results"`
+		Results []GeocodingResponse `json:"results"`
 	}
 
 	err = json.NewDecoder(resp.Body).Decode(&geoResp)
@@ -44,6 +44,6 @@ func (c *client) GetCoordinates(city string) (res GeocodingResponse, err error) 
 		return GeocodingResponse{}, err
 	}
 
-	return geoResp.Results, nil
+	return geoResp.Results[0], nil
 
 }
