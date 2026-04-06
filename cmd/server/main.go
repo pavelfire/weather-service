@@ -20,7 +20,11 @@ func main() {
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)
 
-	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
+	r.Get("/{city}", func(w http.ResponseWriter, r *http.Request) {
+		city := chi.URLParam(r, "city")
+
+		fmt.Println("Requested city:", city)
+
 		_, err := w.Write([]byte("welcome"))
 		if err != nil {
 			log.Println("Error writing response:", err)
