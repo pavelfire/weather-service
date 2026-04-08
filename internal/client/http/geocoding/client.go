@@ -31,6 +31,8 @@ func (c *client) GetCoordinates(city string) (res GeocodingResponse, err error) 
 		return GeocodingResponse{}, err
 	}
 
+	defer resp.Body.Close()
+
 	if resp.StatusCode != http.StatusOK {
 		return GeocodingResponse{}, fmt.Errorf("failed to get coordinates: %s", resp.Status)
 	}
